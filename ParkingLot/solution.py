@@ -91,5 +91,22 @@ class Levels:
                 self.availableSpots.append(Slots(lane,i,random.choice(list(VehicleType))))
                 
     
+    def park(self,vehicle):
+        for slot in self.availableSpots:
+            vehicle = slot.getVehicle()
+            if slot.park(vehicle):
+                return True
+        return False
+    
+    def companyParked(self,companyName):
+        all_vehicles = []
+        
+        for spot in self.availableSpots:
+            vehicle = spot.getVehicle()
+            if (vehicle is not None) and ((vehicle.companyName == companyName)):
+                all_vehicles.append(vehicle)
+        
+        return all_vehicles
+    
     
         
